@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,18 @@ namespace BeginningCSharp
     {
         static void Main(string[] args)
         {
+            string filePath = @"D:\CodeLab\Cursuri Pluralsight\Beginning Collections with C#\BeginningCSharp\Pop by Largest Final.csv";
+
+            CsvReader csvReader = new CsvReader(filePath);
+
+            Country[] countries = csvReader.ReadFirstNCountries(10);
+
+            foreach (Country country in countries)
+            {
+                Console.WriteLine($"{country.Name}: {country.Population} ");
+            }
+            
+
             //List<string> daysOfWeek = new List<string>();
 
             //daysOfWeek.Add("Monday");
@@ -20,16 +33,16 @@ namespace BeginningCSharp
             //daysOfWeek.Add("Saturday");
             //daysOfWeek.Add("Sunday");
 
-            List<string> daysOfWeek = new List<string>()
-            {
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday",
-                "Sunday"
-            };
+            //List<string> daysOfWeek = new List<string>()
+            //{
+            //    "Monday",
+            //    "Tuesday",
+            //    "Wednesday",
+            //    "Thursday",
+            //    "Friday",
+            //    "Saturday",
+            //    "Sunday"
+            //};
 
         }
     }
