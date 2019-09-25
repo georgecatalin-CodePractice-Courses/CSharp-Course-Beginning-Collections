@@ -16,12 +16,24 @@ namespace BeginningCSharp
             CsvReader csvReader = new CsvReader(filePath);
 
             List<Country> countries = csvReader.ReadCountries();
+            Country liliputCountry = new Country("Lilliput", "Code", "Region", 2000000);
+
+            int liliputCountryIndex;
+
+            liliputCountryIndex = countries.FindIndex(x => x.Population < 2000000);
+            countries.Insert(liliputCountryIndex, liliputCountry);
+            countries.RemoveAt(liliputCountryIndex);
 
             foreach (Country country in countries)
             {
                 Console.WriteLine($"{country.Name}: {country.Population} ");
             }
-            
+
+            Console.WriteLine($"There are {countries.Count} elements in the list.");
+
+
+
+
 
             //List<string> daysOfWeek = new List<string>();
 
