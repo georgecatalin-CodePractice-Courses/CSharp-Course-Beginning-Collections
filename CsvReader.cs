@@ -16,21 +16,22 @@ namespace BeginningCSharp
             this._csvFilePath = csvFilePath;
         }
 
-        public Country[] ReadFirstNCountries(int numberOfCountries)
+        public List<Country> ReadCountries()
         {
             //return null;
 
-            Country[] country = new Country[numberOfCountries];
+            List<Country> country = new List<Country>();
 
             using (StreamReader sr=new StreamReader(_csvFilePath))
             {
                 sr.ReadLine();
 
-                for (int i = 0; i < numberOfCountries; i++)
+                string csvLine;
+                while ((csvLine=sr.ReadLine())!=null)
                 {
-                    string csvLine = sr.ReadLine();
-                    country[i] = ReadCountryFromCSVLine(csvLine);
+                    country.Add(ReadCountryFromCSVLine(csvLine));
                 }
+               
             }
 
 

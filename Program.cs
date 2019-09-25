@@ -15,7 +15,7 @@ namespace BeginningCSharp
 
             CsvReader csvReader = new CsvReader(filePath);
 
-            Country[] countries = csvReader.ReadFirstNCountries(10);
+            List<Country> countries = csvReader.ReadCountries();
 
             foreach (Country country in countries)
             {
