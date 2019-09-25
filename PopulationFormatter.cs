@@ -8,16 +8,6 @@ namespace BeginningCSharp
 {
     class PopulationFormatter
     {
-        using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Pluralsight.BegCShCollections.TopTenPops
-    {
-        class PopulationFormatter
-        {
             public static string FormatPopulation(int population)
             {
                 if (population == 0)
