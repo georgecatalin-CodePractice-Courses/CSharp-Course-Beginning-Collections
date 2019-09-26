@@ -16,45 +16,52 @@ namespace BeginningCSharp
             CsvReader csvReader = new CsvReader(filePath);
 
             List<Country> countries = csvReader.ReadCountries();
-            Country liliputCountry = new Country("Lilliput", "Code", "Region", 2000000);
 
-            int liliputCountryIndex;
 
-            liliputCountryIndex = countries.FindIndex(x => x.Population < 2000000);
-            countries.Insert(liliputCountryIndex, liliputCountry);
-            countries.RemoveAt(liliputCountryIndex);
+            //foreach (Country country in countries.Take<Country>(10))
+            //{
+            //    Console.WriteLine($"{country.Name}: {country.Population} ");
+            //}
 
-            foreach (Country country in countries)
+            //Console.WriteLine($"There are {countries.Count} elements in the list.");
+
+
+            //foreach (Country item in countries.OrderBy(x=>x.Name))
+            //{
+            //    Console.WriteLine($"{item.Name}: {item.Population} ");
+            //}
+
+            //foreach (Country item in countries.OrderBy<Country,string>(x=>x.Name))
+            //{
+            //     Console.WriteLine($"{item.Name}: {item.Population} ");
+            //}
+
+            //foreach (Country item in countries.OrderBy(x=>x.Name).Take(10))
+            //{
+            //    Console.WriteLine($"{item.Name}: {item.Population} ");
+            //}
+
+            //foreach (Country item in countries.Take(20).Where(x=>!x.Name.Contains(',')))
+            //{
+            //     Console.WriteLine($"{item.Name}: {item.Population} ");
+            //}
+
+            //foreach (Country item in countries.Where(x=>!x.Name.Contains(',')).Take(50))
+            //{
+            //      Console.WriteLine($"{item.Name}: {item.Population} ");
+            //}
+
+            //var filteredCountries = countries.Where(x => !x.Name.Contains(',')).Take(10);
+
+            var filteredCountries = from item in countries
+                                    where !item.Name.Contains(',')
+                                    select item;
+
+            foreach (var item in filteredCountries)
             {
-                Console.WriteLine($"{country.Name}: {country.Population} ");
+               Console.WriteLine($"{item.Name}: {item.Population} "); 
             }
 
-            Console.WriteLine($"There are {countries.Count} elements in the list.");
-
-
-
-
-
-            //List<string> daysOfWeek = new List<string>();
-
-            //daysOfWeek.Add("Monday");
-            //daysOfWeek.Add("Tuesday");
-            //daysOfWeek.Add("Wednesday");
-            //daysOfWeek.Add("Thursday");
-            //daysOfWeek.Add("Friday");
-            //daysOfWeek.Add("Saturday");
-            //daysOfWeek.Add("Sunday");
-
-            //List<string> daysOfWeek = new List<string>()
-            //{
-            //    "Monday",
-            //    "Tuesday",
-            //    "Wednesday",
-            //    "Thursday",
-            //    "Friday",
-            //    "Saturday",
-            //    "Sunday"
-            //};
 
         }
     }
