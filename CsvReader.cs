@@ -16,11 +16,11 @@ namespace BeginningCSharp
             this._csvFilePath = csvFilePath;
         }
 
-        public List<Country> ReadCountries()
+        public Dictionary<string,List<Country>> ReadCountries()
         {
             //return null;
 
-            List<Country> country = new List<Country>();
+            var countries = new Dictionary<string, List<Country>>();
 
             using (StreamReader sr = new StreamReader(_csvFilePath))
             {
@@ -29,13 +29,23 @@ namespace BeginningCSharp
                 string csvLine;
                 while ((csvLine = sr.ReadLine()) != null)
                 {
-                    country.Add(ReadCountryFromCSVLine(csvLine));
+                    Country country = ReadCountryFromCSVLine(csvLine);
+
+                    if (countries.ContainsKey(country.Region))
+                    {
+                        countries[country.Region].Add(country);
+                    }
+                    else
+                    {
+                        List<Country> countryToAdd = new List<Country>() { country };
+                        countries.Add(country.Region,countryToAdd);
+                    }
                 }
 
             }
 
 
-            return country;
+            return countries;
 
         }
 

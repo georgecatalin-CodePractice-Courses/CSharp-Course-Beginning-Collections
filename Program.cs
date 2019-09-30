@@ -15,46 +15,35 @@ namespace BeginningCSharp
 
             CsvReader csvReader = new CsvReader(filePath);
 
-            List<Country> countries = csvReader.ReadCountries();
-            Country liliputCountry = new Country("Lilliput", "Code", "Region", 2000000);
+            Dictionary<string,List<Country>> countries = csvReader.ReadCountries();
 
-            int liliputCountryIndex;
-
-            liliputCountryIndex = countries.FindIndex(x => x.Population < 2000000);
-            countries.Insert(liliputCountryIndex, liliputCountry);
-            countries.RemoveAt(liliputCountryIndex);
-
-            foreach (Country country in countries)
+            foreach (string region in countries.Keys)
             {
-                Console.WriteLine($"{country.Name}: {country.Population} ");
+                Console.WriteLine(region);
             }
+
+
+            Console.WriteLine("Please enter the region to list its countries");
+            string regionEntered = Console.ReadLine();
+
+            if (countries.ContainsKey(regionEntered))
+            {
+                foreach (Country country in countries[regionEntered].Take(10))
+                {
+                    Console.WriteLine($"{country.Name}: {country.Population} ");
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("This is not a valid region");
+            }
+
+
 
             Console.WriteLine($"There are {countries.Count} elements in the list.");
 
 
-
-
-
-            //List<string> daysOfWeek = new List<string>();
-
-            //daysOfWeek.Add("Monday");
-            //daysOfWeek.Add("Tuesday");
-            //daysOfWeek.Add("Wednesday");
-            //daysOfWeek.Add("Thursday");
-            //daysOfWeek.Add("Friday");
-            //daysOfWeek.Add("Saturday");
-            //daysOfWeek.Add("Sunday");
-
-            //List<string> daysOfWeek = new List<string>()
-            //{
-            //    "Monday",
-            //    "Tuesday",
-            //    "Wednesday",
-            //    "Thursday",
-            //    "Friday",
-            //    "Saturday",
-            //    "Sunday"
-            //};
 
         }
     }
